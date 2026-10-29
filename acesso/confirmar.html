@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmando E-mail...</title>
+  
+  <!-- SDK do Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <h1 id="title">Validando acesso...</h1>
+  <p id="message">Estamos verificando o seu link de confirmação. Aguarde um instante.</p>
+
+  <!-- ID do Usuário (oculto até confirmar) -->
+  <div id="user-info" style="display: none;">
+    <p><strong>ID do Usuário:</strong> <span id="user-id">---</span></p>
+  </div>
+
+  <!-- Botão de Ação -->
+  <p>
+    <a id="action-btn" href="/login" style="display: none;">Ir para o Login</a>
+  </p>
+
+  <!-- Contador de Redirecionamento -->
+  <p id="redirect-box" style="display: none;">
+    Redirecionando em <span id="timer">5</span> segundos...
+  </p>
+
+  <script>
+    // ⚙️ Credenciais do Supabase
+    const SUPABASE_URL = 'https://aoenxxscghmtzzbarnyy.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFvZW54eHNjZ2htdHp6YmFybnl5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgxOTMxNjksImV4cCI6MjEwMzc2OTE2OX0.xpDzrKo9N5y27GSTiBYs7VI6nl0UtFjI9TLPG7ZSmUY';
+
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    async function processarConfirmacao() {
+      const titleEl = document.getElementById('title');
+      const messageEl = document.getElementById('message');
+      const userInfo = document.getElementById('user-info');
+      const userIdSpan = document.getElementById('user-id');
+      const actionBtn = document.getElementById('action-btn');
+      const redirectBox = document.getElementById('redirect-box');
+
+      try {
+        // O Supabase SDK lê o token na URL (#access_token=...) e valida a sessão
+        const { data: { session }, error } = await supabaseClient.auth.getSession();
+
+        if (error || !session) {
+          throw new Error(error ? error.message : 'Sessão inválida ou expirada.');
+        }
+
+        // Sucesso: ID retornado com segurança
+        const userId = session.user.id;
+
+        titleEl.textContent = 'Conta Confirmada! 🎉';
+        messageEl.textContent = 'Seu e-mail foi verificado com sucesso.';
+        
+        userIdSpan.textContent = userId;
+        userInfo.style.display = 'block';
+
+        actionBtn.style.display = 'inline-block';
+        redirectBox.style.display = 'block';
+
+        // Redirecionamento em 5 segundos
+        let tempoRestante = 5;
+        const timerElement = document.getElementById('timer');
+
+        const contador = setInterval(() => {
+          tempoRestante--;
+          timerElement.textContent = tempoRestante;
+
+          if (tempoRestante <= 0) {
+            clearInterval(contador);
+            window.location.href = '/login'; 
+          }
+        }, 1000);
+
+      } catch (err) {
+        // Trata erro de link inválido ou expirado
+        titleEl.textContent = 'Ops! Link inválido ❌';
+        messageEl.textContent = 'Este link expirou ou é inválido. Solicite um novo e-mail.';
+        
+        actionBtn.textContent = 'Voltar para o Início';
+        actionBtn.href = '/';
+        actionBtn.style.display = 'inline-block';
+      }
+    }
+
+    processarConfirmacao();
+  </script>
+
+</body>
+</html>

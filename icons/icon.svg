@@ -1,0 +1,95 @@
+<svg id="bimiSvg" version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 512 512">
+            <title>Doce de Leite Logo</title>
+            <defs>
+              <!-- Fundo e feixe de luz radial suave -->
+              <radialGradient id="bgLight" cx="50%" cy="30%" r="60%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                <stop offset="25%" stop-color="#f8e7d2" stop-opacity="0.6"/>
+                <stop offset="55%" stop-color="#2a1810" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+              </radialGradient>
+
+              <!-- Cone de Luz -->
+              <linearGradient id="beamGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85"/>
+                <stop offset="50%" stop-color="#ffffff" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+              </linearGradient>
+
+              <!-- Degradê da Calda Caramelizada / Corpo -->
+              <linearGradient id="pudimBody" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffe3c4"/>
+                <stop offset="18%" stop-color="#f7cb96"/>
+                <stop offset="50%" stop-color="#d99955"/>
+                <stop offset="100%" stop-color="#693310"/>
+              </linearGradient>
+
+              <!-- Calda Escura da Base -->
+              <radialGradient id="caramelBase" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#3d1402" stop-opacity="0.95"/>
+                <stop offset="80%" stop-color="#1f0900" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+              </radialGradient>
+
+              <!-- Prato Translúcido -->
+              <radialGradient id="plateGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+                <stop offset="60%" stop-color="#888888" stop-opacity="0.2"/>
+                <stop offset="90%" stop-color="#222222" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+              </radialGradient>
+
+              <!-- Cobertura Superior Brilhante -->
+              <linearGradient id="topCream" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="60%" stop-color="#ffebd4"/>
+                <stop offset="100%" stop-color="#e2b17b"/>
+              </linearGradient>
+
+              <!-- Sombra projetada do pudim no prato -->
+              <radialGradient id="pudimShadow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#0d0401" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#0d0401" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Fundo Preto com holofote central -->
+            <rect width="512" height="512" fill="#000000"/>
+            <rect width="512" height="512" fill="url(#bgLight)"/>
+
+            <!-- Feixe de luz volumétrico vertical -->
+            <path d="M 120,0 L 392,0 L 460,330 C 350,370 162,370 52,330 Z" fill="url(#beamGrad)"/>
+
+            <!-- Sombra base e Prato de Vidro -->
+            <ellipse cx="256" cy="285" rx="145" ry="65" fill="url(#plateGrad)"/>
+            <ellipse cx="256" cy="288" rx="110" ry="48" fill="url(#pudimShadow)"/>
+
+            <!-- Calda de Caramelo Escuro ao redor da base -->
+            <ellipse cx="256" cy="286" rx="100" ry="42" fill="url(#caramelBase)"/>
+
+            <!-- Corpo Principal do Pudim/Doce de Leite (Forma cônica truncada suave) -->
+            <path d="M 172,205 &#10;                     C 172,205 180,285 256,285 &#10;                     C 332,285 340,205 340,205 &#10;                     C 340,205 315,160 256,160 &#10;                     C 197,160 172,205 172,205 Z" fill="url(#pudimBody)"/>
+
+            <!-- Sombra de curvatura na lateral do corpo -->
+            <path d="M 172,205 &#10;                     C 172,205 180,285 256,285 &#10;                     C 332,285 340,205 340,205&#10;                     C 325,230 292,248 256,248&#10;                     C 220,248 187,230 172,205 Z" fill="#2c1103" opacity="0.45"/>
+
+            <!-- Topo do Doce de Leite / Creme Superior -->
+            <ellipse cx="256" cy="172" rx="72" ry="32" fill="url(#topCream)"/>
+
+            <!-- Reflexo / Brilho Glossy Branco Intenso no Topo -->
+            <path d="M 282,156 &#10;                     C 310,162 318,176 304,188 &#10;                     C 292,182 280,172 282,156 Z" fill="#ffffff" opacity="0.95"/>
+            <ellipse cx="230" cy="165" rx="20" ry="8" fill="#ffffff" opacity="0.4"/>
+
+            <!-- TEXTO BOLD "Doce de Leite" (Com contorno escuro espesso idêntico à imagem original) -->
+            <g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-weight="900" font-size="52" text-anchor="middle">
+              
+              <!-- Camada Externa de Contorno / Stroke Marrom Escuro -->
+              <text x="256" y="420" fill="#2b1402" stroke="#2b1402" stroke-width="18" stroke-linejoin="round" stroke-linecap="round">Doce de Leite</text>
+              
+              <!-- Camada de Sombra suave atrás do texto -->
+              <text x="256" y="423" fill="#000000" opacity="0.5">Doce de Leite</text>
+
+              <!-- Camada Principal do Texto Branco -->
+              <text x="256" y="420" fill="#ffffff">Doce de Leite</text>
+            </g>
+          </svg>
